@@ -45,7 +45,7 @@ class RuffHelper:
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
 
-PROJECT_ROOT = "./"
+PROJECT_ROOT = "."
 MAIN = f"{PROJECT_ROOT}/main.py"
 
 uv = UVHelper()
