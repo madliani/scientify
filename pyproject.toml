@@ -1,0 +1,11 @@
+[project]
+description = "A starter kit of a data science project."
+name = "scientify"
+readme = "README.md"
+requires-python = ">=3.14"
+version = "0.1.0"
+
+dependencies = ["python-dotenv>=1.2.3"]
+
+[dependency-groups]
+dev = ["invoke>=3.0.3", "pytest>=9.1.1", "ty>=0.0.75"]
