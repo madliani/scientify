@@ -46,7 +46,7 @@ class RuffHelper:
 
 
 PROJECT_ROOT = "./"
-MAIN = f"{PROJECT_ROOT}/src/main.py"
+MAIN = f"{PROJECT_ROOT}/main.py"
 
 uv = UVHelper()
 pytest = PytestHelper()
