@@ -74,11 +74,9 @@ class RuffHelper:
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
 
-PROJECT_ROOT = r"."
+ROOT = r"."
 MAIN = (
-    rf"{PROJECT_ROOT}\main.py"
-    if platform.system() == "Windows"
-    else rf"{PROJECT_ROOT}/main.py"
+    rf"{ROOT}\main.py" if platform.system() == "Windows" else rf"{ROOT}/main.py"
 )
 
 uv = UVHelper()
@@ -98,8 +96,8 @@ def install(cmd):
 def check(cmd):
     """Task for project type checking, linting and formatting."""
 
-    cmd.run(uv.run(ty.check(PROJECT_ROOT)))
-    cmd.run(uv.run(ruff.check(PROJECT_ROOT)))
+    cmd.run(uv.run(ty.check(ROOT)))
+    cmd.run(uv.run(ruff.check(ROOT)))
 
 
 @task
