@@ -2,13 +2,36 @@ import platform
 
 from invoke import task
 
-is_win = platform.system() == "Windows"
+
+class OSAdapter:
+    """OS adapter."""
+
+    is_win = platform.system() == "Windows"
+
+    def adapt_path(self, path: list[str]) -> str:
+        """Adapt path for OS format."""
+
+        if self.is_win:
+            return r"\\".join(path)
+        else:
+            return r"/".join(path)
+
+    def adapt_bin(self, bin: str) -> str:
+        """Adapt executable binary for OS format."""
+
+        if self.is_win:
+            return f"{bin}.exe"
+        else:
+            return bin
+
+
+os_adapter = OSAdapter()
 
 
 class UVHelper:
     """uv helper."""
 
-    uv_cmd = "uv.exe" if is_win else "uv"
+    uv_cmd = os_adapter.adapt_bin("uv")
 
     def install(self) -> str:
         """Install dependencies into virtual environment."""
@@ -42,7 +65,7 @@ class UVHelper:
 class PytestHelper:
     """pytest helper."""
 
-    pytest_cmd = "pytest.exe" if is_win else "pytest"
+    pytest_cmd = os_adapter.adapt_bin("pytest")
 
     def run(self) -> str:
         """Run tests."""
@@ -53,7 +76,7 @@ class PytestHelper:
 class TYHelper:
     """ty helper."""
 
-    ty_cmd = "ty.exe" if is_win else "ty"
+    ty_cmd = os_adapter.adapt_bin("ty")
 
     def check(self, path: str):
         """Check types of project."""
@@ -66,7 +89,7 @@ class TYHelper:
 class RuffHelper:
     """Ruff helper."""
 
-    ruff_cmd = "ruff.exe" if is_win else "ruff"
+    ruff_cmd = os_adapter.adapt_bin("ruff")
 
     def check(self, path: str):
         """Lint and format project."""
@@ -77,8 +100,7 @@ class RuffHelper:
 
 
 ROOT_DIR = r"."
-MAIN_FILE = rf"{ROOT_DIR}\main.py" if is_win else rf"{ROOT_DIR}/main.py"
-
+MAIN_FILE = os_adapter.adapt_path([ROOT_DIR, "main.py"])
 uv = UVHelper()
 ty = TYHelper()
 ruff = RuffHelper()
