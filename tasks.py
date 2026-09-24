@@ -2,18 +2,16 @@ import platform
 
 from invoke import task
 
+is_win = platform.system() == "Windows"
+
 ROOT_DIR = r"."
-MAIN_FILE = (
-    rf"{ROOT_DIR}\main.py"
-    if platform.system() == "Windows"
-    else rf"{ROOT_DIR}/main.py"
-)
+MAIN_FILE = rf"{ROOT_DIR}\main.py" if is_win else rf"{ROOT_DIR}/main.py"
 
 
 class UVHelper:
     """uv helper."""
 
-    uv_cmd = "uv"
+    uv_cmd = "uv.exe" if is_win else "uv"
 
     def install(self) -> str:
         """Install dependencies into virtual environment."""
@@ -47,7 +45,7 @@ class UVHelper:
 class PytestHelper:
     """pytest helper."""
 
-    pytest_cmd = "pytest"
+    pytest_cmd = "pytest.exe" if is_win else "pytest"
 
     def run(self) -> str:
         """Run tests."""
@@ -58,7 +56,7 @@ class PytestHelper:
 class TYHelper:
     """ty helper."""
 
-    ty_cmd = "ty"
+    ty_cmd = "ty.exe" if is_win else "ty"
 
     def check(self, path: str):
         """Check types of project."""
@@ -71,7 +69,7 @@ class TYHelper:
 class RuffHelper:
     """Ruff helper."""
 
-    ruff_cmd = "ruff"
+    ruff_cmd = "ruff.exe" if is_win else "ruff"
 
     def check(self, path: str):
         """Lint and format project."""
