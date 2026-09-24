@@ -8,13 +8,13 @@ class OSAdapter:
 
     is_win = platform.system() == "Windows"
 
-    def adapt_path(self, *path: str) -> str:
+    def adapt_path(self, *paths: str) -> str:
         """Adapt path for OS format."""
 
         if self.is_win:
-            return "\\".join(path)
+            return "\\".join(paths)
         else:
-            return "/".join(path)
+            return "/".join(paths)
 
     def adapt_bin(self, bin: str) -> str:
         """Adapt executable binary for OS format."""
