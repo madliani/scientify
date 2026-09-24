@@ -109,7 +109,7 @@ pytest = PytestHelper()
 
 @task
 def install(cmd):
-    """Task for installing dependencies into virtual environment."""
+    """Task for dependencies installing into virtual environment."""
 
     cmd.run(uv.install())
 
@@ -131,14 +131,14 @@ def run(cmd):
 
 @task
 def requirements(cmd):
-    """Task for exporting uv lockfile to requirements.txt."""
+    """Task for uv lockfile exporting to requirements.txt."""
 
     cmd.run(uv.export_requirements())
 
 
 @task
 def pylock(cmd):
-    """Task for exporting uv lockfile to pylock.toml."""
+    """Task for uv lockfile exporting to pylock.toml."""
 
     cmd.run(uv.export_pylock())
 
