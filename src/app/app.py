@@ -1,4 +1,4 @@
-from app.parser import CSVParser
+from src.parser import CSVParser
 
 
 def run(csv_path: str):

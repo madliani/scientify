@@ -1,4 +1,4 @@
-from app.parser import CSVParser
+from src.parser import CSVParser
 
 CSV_PATH = ""
 

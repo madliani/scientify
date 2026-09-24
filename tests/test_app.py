@@ -1,4 +1,4 @@
-from app import run
+from src.app import run
 
 
 def test_app():
