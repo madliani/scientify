@@ -5,6 +5,7 @@
     "dotenv",
     "FURB",
     "pycache",
+    "pylock",
     "pytest",
     "scientify",
     "venv"

@@ -6,12 +6,33 @@ class UVHelper:
 
     uv_cmd = "uv"
 
+    def install(self) -> str:
+        """Install dependencies into virtual environment."""
+
+        install_cmd = "sync"
+
+        return f"{self.uv_cmd} {install_cmd}"
+
     def run(self, cmd: str) -> str:
         """Run command in virtual environment."""
 
         run_cmd = "run"
 
         return f"{self.uv_cmd} {run_cmd} {cmd}"
+
+    def export_requirements(self) -> str:
+        """Export lockfile to requirements.txt."""
+
+        export_cmd = "export --format requirements.txt"
+
+        return f"{self.uv_cmd} {export_cmd}"
+
+    def export_pylock(self) -> str:
+        """Export lockfile to pylock.toml."""
+
+        export_cmd = "export --format pylock.toml"
+
+        return f"{self.uv_cmd} {export_cmd}"
 
 
 class PytestHelper:
@@ -55,6 +76,13 @@ ruff = RuffHelper()
 
 
 @task
+def install(cmd):
+    """Task for installing dependencies into virtual environment."""
+
+    cmd.run(uv.install())
+
+
+@task
 def check(cmd):
     """Task for project type checking, linting and formatting."""
 
@@ -74,3 +102,17 @@ def test(cmd):
     """Task for application testing."""
 
     cmd.run(uv.run(pytest.run()))
+
+
+@task
+def requirements(cmd):
+    """Task for exporting uv lockfile to requirements.txt."""
+
+    cmd.run(uv.export_requirements())
+
+
+@task
+def pylock(cmd):
+    """Task for exporting uv lockfile to pylock.toml."""
+
+    cmd.run(uv.export_pylock())
