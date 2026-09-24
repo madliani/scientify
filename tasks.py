@@ -12,9 +12,9 @@ class OSAdapter:
         """Adapt path for OS format."""
 
         if self.is_win:
-            return r"\\".join(path)
+            return "\\".join(path)
         else:
-            return r"/".join(path)
+            return "/".join(path)
 
     def adapt_bin(self, bin: str) -> str:
         """Adapt executable binary for OS format."""
