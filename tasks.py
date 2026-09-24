@@ -2,6 +2,13 @@ import platform
 
 from invoke import task
 
+ROOT_DIR = r"."
+MAIN_FILE = (
+    rf"{ROOT_DIR}\main.py"
+    if platform.system() == "Windows"
+    else rf"{ROOT_DIR}/main.py"
+)
+
 
 class UVHelper:
     """uv helper."""
@@ -73,13 +80,6 @@ class RuffHelper:
 
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
-
-ROOT_DIR = r"."
-MAIN_FILE = (
-    rf"{ROOT_DIR}\main.py"
-    if platform.system() == "Windows"
-    else rf"{ROOT_DIR}/main.py"
-)
 
 uv = UVHelper()
 pytest = PytestHelper()
