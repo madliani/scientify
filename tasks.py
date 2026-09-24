@@ -82,9 +82,9 @@ class RuffHelper:
 
 
 uv = UVHelper()
-pytest = PytestHelper()
 ty = TYHelper()
 ruff = RuffHelper()
+pytest = PytestHelper()
 
 
 @task
