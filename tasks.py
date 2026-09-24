@@ -99,7 +99,7 @@ class RuffHelper:
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
 
-ROOT_DIR = r"."
+ROOT_DIR = "."
 MAIN_FILE = os_adapter.adapt_path(ROOT_DIR, "main.py")
 uv = UVHelper()
 ty = TYHelper()
