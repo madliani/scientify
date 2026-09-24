@@ -1,3 +1,5 @@
+import platform
+
 from invoke import task
 
 
@@ -72,8 +74,12 @@ class RuffHelper:
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
 
-PROJECT_ROOT = "."
-MAIN = f"{PROJECT_ROOT}/main.py"
+PROJECT_ROOT = r"."
+MAIN = (
+    rf"{PROJECT_ROOT}\main.py"
+    if platform.system() == "Windows"
+    else rf"{PROJECT_ROOT}/main.py"
+)
 
 uv = UVHelper()
 pytest = PytestHelper()
