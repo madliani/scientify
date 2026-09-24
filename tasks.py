@@ -41,6 +41,8 @@ class PytestHelper:
     pytest_cmd = "pytest"
 
     def run(self) -> str:
+        """Run tests."""
+
         return self.pytest_cmd
 
 
@@ -50,6 +52,8 @@ class TYHelper:
     ty_cmd = "ty"
 
     def check(self, path: str):
+        """Check types of project."""
+
         check_cmd = "check --fix"
 
         return f"{self.ty_cmd} {check_cmd} {path}"
@@ -61,6 +65,8 @@ class RuffHelper:
     ruff_cmd = "ruff"
 
     def check(self, path: str):
+        """Lint and format project."""
+
         check_cmd = "check --fix"
 
         return f"{self.ruff_cmd} {check_cmd} {path}"
