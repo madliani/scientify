@@ -110,13 +110,6 @@ def run(cmd):
 
 
 @task
-def test(cmd):
-    """Task for application testing."""
-
-    cmd.run(uv.run(pytest.run()))
-
-
-@task
 def requirements(cmd):
     """Task for exporting uv lockfile to requirements.txt."""
 
@@ -128,3 +121,10 @@ def pylock(cmd):
     """Task for exporting uv lockfile to pylock.toml."""
 
     cmd.run(uv.export_pylock())
+
+
+@task
+def test(cmd):
+    """Task for application testing."""
+
+    cmd.run(uv.run(pytest.run()))
