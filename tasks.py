@@ -8,7 +8,7 @@ class OSAdapter:
 
     is_win = platform.system() == "Windows"
 
-    def adapt_path(self, path: list[str]) -> str:
+    def adapt_path(self, *path: str) -> str:
         """Adapt path for OS format."""
 
         if self.is_win:
@@ -100,7 +100,7 @@ class RuffHelper:
 
 
 ROOT_DIR = r"."
-MAIN_FILE = os_adapter.adapt_path([ROOT_DIR, "main.py"])
+MAIN_FILE = os_adapter.adapt_path(ROOT_DIR, "main.py")
 uv = UVHelper()
 ty = TYHelper()
 ruff = RuffHelper()
