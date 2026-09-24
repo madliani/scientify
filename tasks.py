@@ -4,9 +4,6 @@ from invoke import task
 
 is_win = platform.system() == "Windows"
 
-ROOT_DIR = r"."
-MAIN_FILE = rf"{ROOT_DIR}\main.py" if is_win else rf"{ROOT_DIR}/main.py"
-
 
 class UVHelper:
     """uv helper."""
@@ -78,6 +75,9 @@ class RuffHelper:
 
         return f"{self.ruff_cmd} {check_cmd} {path}"
 
+
+ROOT_DIR = r"."
+MAIN_FILE = rf"{ROOT_DIR}\main.py" if is_win else rf"{ROOT_DIR}/main.py"
 
 uv = UVHelper()
 ty = TYHelper()
