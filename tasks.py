@@ -1,4 +1,5 @@
 import platform
+from os import path
 
 from invoke import task
 
@@ -11,10 +12,7 @@ class OSAdapter:
     def adapt_path(self, *paths: str) -> str:
         """Adapt path for OS format."""
 
-        if self.is_win:
-            return "\\".join(paths)
-        else:
-            return "/".join(paths)
+        return path.join(*paths)
 
     def adapt_bin(self, bin: str) -> str:
         """Adapt executable binary for OS format."""
